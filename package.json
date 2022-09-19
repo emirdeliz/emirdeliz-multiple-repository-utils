@@ -10,16 +10,37 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:emirdeliz-multiple-repository-utils.helloWorld"
+		"emirdeliz-multiple-repository-utils.pull-workspace",
+		"emirdeliz-multiple-repository-utils.merge-workspace"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "emirdeliz-multiple-repository-utils.helloWorld",
-				"title": "Hello World"
+				"command": "emirdeliz-multiple-repository-utils.pull-workspace",
+				"title": "Pull Workspace",
+				"description": "Run git pull for each project on the root of the workspace."
+			},
+			{
+				"command": "emirdeliz-multiple-repository-utils.merge-workspace",
+				"title": "Merge Workspace",
+				"description": "Run git merge for each project on the root of the workspace."
 			}
-		]
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "explorerResourceIsRoot && config.git.enabled",
+					"command": "emirdeliz-multiple-repository-utils.pull-workspace",
+					"group": "emirdeliz-multiple-repository-utils@4"
+				},
+				{
+					"when": "explorerResourceIsRoot && config.git.enabled",
+					"command": "emirdeliz-multiple-repository-utils.merge-workspace",
+					"group": "emirdeliz-multiple-repository-utils@4"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
