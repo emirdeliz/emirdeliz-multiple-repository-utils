@@ -1,20 +1,17 @@
 import * as vscode from 'vscode';
 import { getAllFoldersWithGitConfig, runGitPullOnFolders } from 'emirdeliz-vs-extension-utils';
 
-const SETTINGS_KEY_BASE = 'emirdeliz-multi-repo-git-utils';
+const SETTINGS_KEY_BASE = 'emirdeliz-multiple-repository-utils';
 const SETTINGS_KEY_GIT_IGNORE_FOLDERS = 'git-ignore';
 
 export function activate(context: vscode.ExtensionContext) {
 	console.debug(
-		'Congratulations, your extension "emirdeliz-multiple-repository-utils" is now active!'
+		`Congratulations, your extension "${SETTINGS_KEY_BASE}" is now active!`
 	);
 
 	const disposablePullWorkspace = vscode.commands.registerCommand(
-		'emirdeliz-multiple-repository-utils.pull-workspace',
+		`${SETTINGS_KEY_BASE}.pull-workspace`,
 		async ({}) => {
-
-			console.log('--- HALLLL AAAAA A');
-
 			vscode.window.showInformationMessage(
 				`Aloha! Let's go to run git pull for each project on the root of the workspace.🤘...`
 			);
@@ -23,8 +20,6 @@ export function activate(context: vscode.ExtensionContext) {
 			const f = workspaceFolders
 				? workspaceFolders[0]
 				: ({} as vscode.WorkspaceFolder);
-
-			console.log('--- AAAAA A');
 
 			if (!f?.uri || !f?.uri?.fsPath) {
 				return;
@@ -40,7 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	const disposableMergeWorkspace = vscode.commands.registerCommand(
-		'emirdeliz-multiple-repository-utils.merge-workspace',
+		`${SETTINGS_KEY_BASE}.merge-workspace`,
 		async ({}) => {
 			vscode.window.showInformationMessage(
 				`Aloha! Let's go to run git merge for each project on the root of the workspace.🤘...`

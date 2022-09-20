@@ -10,8 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"emirdeliz-multiple-repository-utils.pull-workspace",
-		"emirdeliz-multiple-repository-utils.merge-workspace"
+		"onCommand:emirdeliz-multiple-repository-utils.pull-workspace",
+		"onCommand:emirdeliz-multiple-repository-utils.merge-workspace"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
