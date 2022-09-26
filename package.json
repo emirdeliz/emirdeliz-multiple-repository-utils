@@ -48,7 +48,8 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "yarn run compile && yarn run lint",
 		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
+		"test": "node ./out/test/runTest.js",
+		"symbol:link": "cd node_modules && rm -rf emirdeliz-vs-extension-utils && ln -s ../../emirdeliz-vs-extension-utils emirdeliz-vs-extension-utils && cd .."
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.71.0",
@@ -64,6 +65,6 @@
 		"@vscode/test-electron": "^2.1.5"
 	},
 	"dependencies": {
-		"emirdeliz-vs-extension-utils": "../emirdeliz-vs-extension-utils"
+		"emirdeliz-vs-extension-utils": "git@github.com:emirdeliz/emirdeliz-vs-extension-utils.git"
 	}
 }
