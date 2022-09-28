@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { getAllFoldersWithGitConfig, runGitPullOnFolders } from 'emirdeliz-vs-extension-utils';
+import { createVscodeTerminal, getAllFoldersWithGitConfig, getVscodeTerminalInstanceAndMaybeCreateOne, runGitPullOnFolders } from 'emirdeliz-vs-extension-utils';
 import { getWorkspacePath } from 'emirdeliz-vs-extension-utils';
 
 const SETTINGS_KEY_BASE = 'emirdeliz-multiple-repository-utils';
@@ -13,10 +13,6 @@ export function activate(context: vscode.ExtensionContext) {
 	const disposablePullWorkspace = vscode.commands.registerCommand(
 		`${SETTINGS_KEY_BASE}.pull-workspace`,
 		async ({}) => {
-			vscode.window.showInformationMessage(
-				`Aloha! Let's go to run git pull for each project on the root of the workspace.🤘...`
-			);
-
 			const workspacePath = getWorkspacePath();
 			if (!workspacePath?.uri || !workspacePath?.uri?.fsPath) {
 				return;
@@ -27,7 +23,11 @@ export function activate(context: vscode.ExtensionContext) {
 				SETTINGS_KEY_BASE,
 				SETTINGS_KEY_GIT_IGNORE_FOLDERS
 			);
-			await runGitPullOnFolders(foldersWithGitConfig);
+			await runGitPullOnFolders(foldersWithGitConfig); 
+
+			vscode.window.showInformationMessage(
+				`Aloha! Successfully merged folder! 🤘...`
+			);
 		}
 	);
 
