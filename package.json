@@ -1,6 +1,6 @@
 {
-	"name": "emirdeliz-multiple-repository-utils",
-	"displayName": "emirdeliz-multiple-repository-utils",
+	"name": "emirdeliz-multiple-repo",
+	"displayName": "emirdeliz-multiple-repo",
 	"description": "Multiple repository utils",
 	"version": "0.0.1",
 	"engines": {
@@ -10,19 +10,35 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:emirdeliz-multiple-repository-utils.pull-workspace",
-		"onCommand:emirdeliz-multiple-repository-utils.merge-workspace"
+		"onCommand:emirdeliz-multiple-repo.pull-workspace",
+		"onCommand:emirdeliz-multiple-repo.merge-workspace"
 	],
+	"license": "MIT",
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": [
+			{
+				"id": "emirdeliz-multiple-repo",
+				"title": "Multi repo configuration",
+				"properties": {
+					"ignoreFolders": {
+						"type": "array",
+						"default": [],
+						"markdownDescription": "Specifies folders to ignore when extension makes some action",
+						"scope": "window",
+						"order": 10
+					}
+				}
+			}
+		],
 		"commands": [
 			{
-				"command": "emirdeliz-multiple-repository-utils.pull-workspace",
+				"command": "emirdeliz-multiple-repo.pull-workspace",
 				"title": "Pull Workspace",
 				"description": "Run git pull for each project on the root of the workspace."
 			},
 			{
-				"command": "emirdeliz-multiple-repository-utils.merge-workspace",
+				"command": "emirdeliz-multiple-repo.merge-workspace",
 				"title": "Merge Workspace",
 				"description": "Run git merge for each project on the root of the workspace."
 			}
@@ -31,13 +47,13 @@
 			"explorer/context": [
 				{
 					"when": "explorerResourceIsRoot && config.git.enabled",
-					"command": "emirdeliz-multiple-repository-utils.pull-workspace",
-					"group": "emirdeliz-multiple-repository-utils@4"
+					"command": "emirdeliz-multiple-repo.pull-workspace",
+					"group": "emirdeliz-multiple-repo@4"
 				},
 				{
 					"when": "explorerResourceIsRoot && config.git.enabled",
-					"command": "emirdeliz-multiple-repository-utils.merge-workspace",
-					"group": "emirdeliz-multiple-repository-utils@4"
+					"command": "emirdeliz-multiple-repo.merge-workspace",
+					"group": "emirdeliz-multiple-repo@4"
 				}
 			]
 		}

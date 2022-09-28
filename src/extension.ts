@@ -1,9 +1,13 @@
 import * as vscode from 'vscode';
-import { createVscodeTerminal, getAllFoldersWithGitConfig, getVscodeTerminalInstanceAndMaybeCreateOne, runGitPullOnFolders } from 'emirdeliz-vs-extension-utils';
+import {
+	getAllFoldersWithGitConfig,
+	runGitMergeOnFolders,
+	runGitPullOnFolders,
+} from 'emirdeliz-vs-extension-utils';
 import { getWorkspacePath } from 'emirdeliz-vs-extension-utils';
 
-const SETTINGS_KEY_BASE = 'emirdeliz-multiple-repository-utils';
-const SETTINGS_KEY_GIT_IGNORE_FOLDERS = 'git-ignore';
+const SETTINGS_KEY_BASE = 'emirdeliz-multiple-repo';
+const SETTINGS_KEY_GIT_IGNORE_FOLDERS = 'ignoreFolders';
 
 export function activate(context: vscode.ExtensionContext) {
 	console.debug(
@@ -23,10 +27,10 @@ export function activate(context: vscode.ExtensionContext) {
 				SETTINGS_KEY_BASE,
 				SETTINGS_KEY_GIT_IGNORE_FOLDERS
 			);
-			await runGitPullOnFolders(foldersWithGitConfig); 
 
+			await runGitPullOnFolders(foldersWithGitConfig);
 			vscode.window.showInformationMessage(
-				`Aloha! Successfully merged folder! 🤘...`
+				`Aloha! Pull executed successfully! 🤘...`
 			);
 		}
 	);
@@ -34,10 +38,6 @@ export function activate(context: vscode.ExtensionContext) {
 	const disposableMergeWorkspace = vscode.commands.registerCommand(
 		`${SETTINGS_KEY_BASE}.merge-workspace`,
 		async ({}) => {
-			vscode.window.showInformationMessage(
-				`Aloha! Let's go to run git merge for each project on the root of the workspace.🤘...`
-			);
-
 			const workspaceFolders = vscode.workspace.workspaceFolders;
 			const f = workspaceFolders
 				? workspaceFolders[0]
@@ -52,7 +52,10 @@ export function activate(context: vscode.ExtensionContext) {
 				SETTINGS_KEY_BASE,
 				SETTINGS_KEY_GIT_IGNORE_FOLDERS
 			);
-			await runGitPullOnFolders(foldersWithGitConfig);
+			await runGitMergeOnFolders(foldersWithGitConfig);
+			vscode.window.showInformationMessage(
+				`Aloha! Merge executed successfully! 🤘...`
+			);
 		}
 	);
 
