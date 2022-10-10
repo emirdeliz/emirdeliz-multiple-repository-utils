@@ -28,10 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 				SETTINGS_KEY_GIT_IGNORE_FOLDERS
 			);
 
-			await runGitPullOnFolders(foldersWithGitConfig);
-			vscode.window.showInformationMessage(
-				`Aloha! Pull executed successfully! 🤘...`
-			);
+			runGitPullOnFolders(foldersWithGitConfig);
 		}
 	);
 
@@ -53,9 +50,6 @@ export function activate(context: vscode.ExtensionContext) {
 				SETTINGS_KEY_GIT_IGNORE_FOLDERS
 			);
 			await runGitMergeOnFolders(foldersWithGitConfig);
-			vscode.window.showInformationMessage(
-				`Aloha! Merge executed successfully! 🤘...`
-			);
 		}
 	);
 
