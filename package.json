@@ -3,6 +3,8 @@
 	"displayName": "emirdeliz-multiple-repo",
 	"description": "Multiple repository utils",
 	"version": "0.0.1",
+	"type": "commonjs",
+	"repository": "https://github.com/emirdeliz/emirdeliz-multiple-repository-utils",
 	"engines": {
 		"vscode": "^1.71.0"
 	},
@@ -14,7 +16,7 @@
 		"onCommand:emirdeliz-multiple-repo.merge-workspace"
 	],
 	"license": "MIT",
-	"main": "./out/extension.js",
+	"main": "./dist/extension.js",
 	"contributes": {
 		"configuration": [
 			{
@@ -59,28 +61,41 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "yarn run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "yarn run compile && yarn run lint",
+		"vscode:prepublish": "yarn run build:dist",
+		"build:dist": "swc ./src --quiet --out-dir dist",
+		"build:dist:watch": "swc ./src -watch --quiet --out-dir dist",
+		"build:test": "swc ./src/test --out-dir dist",
+		"test": "yarn build:test && extest run-tests dist/test/extension.test.js",
+		"test:watch": "find . -name '/dist*' | yarn test",
+		"test:setup": "extest setup-tests --yarn",
+		"symbol:link:modules:pre": "rm -rf node_modules/emirdeliz-vs-extension-utils",
+		"symbol:link:modules": "yarn symbol:link:modules:pre && ln -s ../../emirdeliz-vs-extension-utils node_modules/emirdeliz-vs-extension-utils",
+		"symbol:link:src": "ln -s ../node_modules/emirdeliz-vs-extension-utils/src/utils.ts src/utils.ts",
 		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js",
-		"symbol:link": "cd node_modules && rm -rf emirdeliz-vs-extension-utils && ln -s ../../emirdeliz-vs-extension-utils emirdeliz-vs-extension-utils && cd .."
+		"postinstall": "yarn symbol:link:src"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.71.0",
+		"@swc-node/register": "^1.5.4",
+		"@swc/cli": "^0.1.57",
+		"@swc/core": "^1.3.14",
+		"@swc/helpers": "^0.4.12",
+		"@swc/jest": "^0.2.23",
 		"@types/glob": "^7.2.0",
-		"@types/mocha": "^9.1.1",
-		"@types/node": "16.x",
+		"@types/mocha": "^10.0.0",
+		"@types/node": "^18.11.9",
+		"@types/sinon": "^10.0.13",
+		"@types/vscode": "^1.71.0",
 		"@typescript-eslint/eslint-plugin": "^5.31.0",
 		"@typescript-eslint/parser": "^5.31.0",
 		"eslint": "^8.20.0",
 		"glob": "^8.0.3",
-		"mocha": "^10.0.0",
+		"mocha": "10.0.0",
+		"sinon": "^14.0.2",
+		"ts-node": "^10.9.1",
 		"typescript": "^4.7.4",
-		"@vscode/test-electron": "^2.1.5"
+		"vscode-extension-tester": "^5.1.0"
 	},
 	"dependencies": {
-		"emirdeliz-vs-extension-utils": "git@github.com:emirdeliz/emirdeliz-vs-extension-utils.git"
+		"emirdeliz-vs-extension-utils": "https://github.com/emirdeliz/emirdeliz-vs-extension-utils.git"
 	}
 }
