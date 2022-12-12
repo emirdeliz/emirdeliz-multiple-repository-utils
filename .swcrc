@@ -1,11 +1,11 @@
 {
 	"$schema": "https://json.schemastore.org/swcrc",
 	"jsc": {
+		"target": "es5",
 		"parser": {
 			"syntax": "typescript",
 			"tsx": false
 		},
-		"target": "es2022",
 		"loose": false
 	},
 	"module": {
@@ -13,5 +13,5 @@
 		"noInterop": true
 	},
 	"minify": false,
-	"isModule": false
+	"isModule": true
 }
