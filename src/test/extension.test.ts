@@ -16,7 +16,7 @@ function testReport(reportSpy: jest.SpyInstance) {
 	expect(reportSpy).toHaveBeenNthCalledWith(
 		1,
 		expect.objectContaining({
-			increment: 0,
+			increment: 50,
 			message: 'Running 1 of 2',
 		})
 	);
@@ -34,17 +34,8 @@ function testProgress(
 	withProgressSpy: jest.SpyInstance,
 	type: EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS
 ) {
-	expect(withProgressSpy).toHaveBeenCalledTimes(2);
-	expect(withProgressSpy).toHaveBeenNthCalledWith(
-		1,
-		expect.objectContaining({
-			title: `Making ${type}... 🤘`,
-		}),
-		expect.any(Function)
-	);
-
-	expect(withProgressSpy).toHaveBeenNthCalledWith(
-		2,
+	expect(withProgressSpy).toHaveBeenCalledTimes(1);
+	expect(withProgressSpy).toHaveBeenCalledWith(
 		expect.objectContaining({
 			title: `Making ${type}... 🤘`,
 		}),
@@ -62,7 +53,7 @@ describe('Commands', function () {
 		const reportSpy = jest.spyOn(vscode.window, 'report');
 		const withProgressSpy = jest.spyOn(vscode.window, 'withProgress');
 
-		extension.makePull();
+		await extension.makePull();
 
 		testRun(runSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Pull);
 		testProgress(withProgressSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Pull);
@@ -74,7 +65,7 @@ describe('Commands', function () {
 		const reportSpy = jest.spyOn(vscode.window, 'report');
 		const withProgressSpy = jest.spyOn(vscode.window, 'withProgress');
 
-		extension.makeMerge();
+		await extension.makeMerge();
 
 		testRun(runSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge);
 		testProgress(withProgressSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge);

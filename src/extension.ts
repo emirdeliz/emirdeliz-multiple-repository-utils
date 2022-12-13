@@ -5,7 +5,7 @@ import {
 	SETTINGS_KEY_GIT_IGNORE_FOLDERS,
 } from './constants';
 
-const makePull = function () {
+async function makePull() {
 	const workspacePath = utils.getWorkspacePath();
 	if (!workspacePath?.uri || !workspacePath?.uri?.fsPath) {
 		return;
@@ -16,10 +16,10 @@ const makePull = function () {
 		SETTINGS_KEY_BASE,
 		SETTINGS_KEY_GIT_IGNORE_FOLDERS
 	);
-	utils.runGitPullOnFolders(foldersWithGitConfig);
-};
+	await utils.runGitPullOnFolders(foldersWithGitConfig);
+}
 
-const makeMerge = function () {
+async function makeMerge() {
 	const workspacePath = utils.getWorkspacePath();
 	if (!workspacePath?.uri || !workspacePath?.uri?.fsPath) {
 		return;
@@ -30,8 +30,8 @@ const makeMerge = function () {
 		SETTINGS_KEY_BASE,
 		SETTINGS_KEY_GIT_IGNORE_FOLDERS
 	);
-	utils.runGitMergeOnFolders(foldersWithGitConfig);
-};
+	await utils.runGitMergeOnFolders(foldersWithGitConfig);
+}
 
 function activate(context: vscode.ExtensionContext) {
 	console.debug(
