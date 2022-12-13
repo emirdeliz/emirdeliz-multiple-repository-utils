@@ -1,3 +1,5 @@
-# emirdeliz-multiple-repository-utils README
+# emirdeliz-multiple-repository-utils
 
-This is a Hello World sample extension that shows you how to set up and run simple UI tests for VS Code extensions using the extension tester.
+[![Build](https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/actions/workflows/build.yml/badge.svg)](https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/actions/workflows/build.yml)
+[![Lint](https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/actions/workflows/lint.yml/badge.svg)](https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/actions/workflows/lint.yml)
+[![Test](https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/actions/workflows/test.yml/badge.svg)](https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/actions/workflows/test.yml)

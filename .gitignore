@@ -8,3 +8,5 @@ dist
 test-resources
 ut-dir
 ut-dir.map
+
+*.DS_Store
