@@ -1,4 +1,5 @@
-import * as constants from '../../constants';
+import * as constants from 'emirdeliz-vs-extension-utils/src/constants';
+import { Progress, ProgressOptions } from 'vscode';
 
 export const window = {
 	createTerminal: function () {
@@ -11,12 +12,18 @@ export const window = {
 	},
 	showErrorMessage: jest.fn(),
 	showWarningMessage: jest.fn(),
-	withProgress: function (_data, callback) {
-		callback({ report: jest.fn() });
+	withProgress: function (
+		_progress: ProgressOptions,
+		callback: (
+			progress: Progress<{ message?: string; increment?: number }>
+		) => void
+	) {
+		callback({
+			report: window.report,
+		});
 	},
-	sendText: function (_command: string) {
-		return;
-	},
+	sendText: jest.fn(),
+	report: jest.fn(),
 };
 
 export const workspace = {

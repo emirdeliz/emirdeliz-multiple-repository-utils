@@ -66,7 +66,7 @@
 		"build:dist:watch": "swc ./src --watch --quiet --out-dir dist",
 		"build:test": "swc ./src/test --out-dir dist",
 		"test": "jest --clearCache && jest ./src/test/extension.test.ts",
-		"test:watch": "jest --clearCache && jest --watch ./src/test/extension.test.ts",
+		"test:watch": "jest --watch ./src/test/extension.test.ts",
 		"symbol:link:modules:pre": "rm -rf node_modules/emirdeliz-vs-extension-utils",
 		"symbol:link:modules": "npm run symbol:link:modules:pre && ln -s ../../emirdeliz-vs-extension-utils node_modules/emirdeliz-vs-extension-utils",
 		"lint:check": "eslint src --ext .ts --fix",
