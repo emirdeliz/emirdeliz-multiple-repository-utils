@@ -43,6 +43,14 @@ function testProgress(
 	);
 }
 
+function testIgnoreFolders(
+	runSpy: jest.SpyInstance,
+	type: EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS
+) {
+	expect(runSpy).toHaveBeenCalledTimes(1);
+	expect(runSpy).toHaveBeenCalledWith(`git -C repoTwo ${type}`);
+}
+
 describe('Commands', function () {
 	beforeEach(function () {
 		jest.clearAllMocks();
@@ -70,5 +78,21 @@ describe('Commands', function () {
 		testRun(runSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge);
 		testProgress(withProgressSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge);
 		testReport(reportSpy);
+	});
+
+	it('should return expected output when execute pull/merge with ignoreFolders', async function () {
+		const runSpy = jest.spyOn(vscode.window, 'sendText');
+		jest.spyOn(vscode.workspace, 'getConfiguration').mockReturnValue({
+			get: jest.fn(function () {
+				return ['repoOne'];
+			}),
+		});
+
+		await extension.makePull();
+		testIgnoreFolders(runSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Pull);
+
+		runSpy.mockReset();
+		await extension.makeMerge();
+		testIgnoreFolders(runSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge);
 	});
 });

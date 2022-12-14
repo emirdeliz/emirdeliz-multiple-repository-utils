@@ -29,15 +29,8 @@ export const window = {
 export const workspace = {
 	getConfiguration: function () {
 		return {
-			get: jest.fn(function (settingKey: string) {
-				switch (settingKey) {
-					case settingKey:
-						return 'src/other-dir/code';
-					case 'ignoreFolders':
-						return [];
-					default:
-						break;
-				}
+			get: jest.fn(function () {
+				return [] as Array<string>;
 			}),
 		};
 	},
