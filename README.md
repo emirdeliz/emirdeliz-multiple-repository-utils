@@ -6,6 +6,27 @@
 
 This extension makes your life easier to use the git if you work with a multi-repo approach. You can run pull and merge to all projects inside the workspace with a simple action on the menu.
 
-<img src="https://raw.githubusercontent.com/emirdeliz/emirdeliz-multiple-repository-utils/master/docs/demo-merge.gif" width="300" height="auto" alt="Emirdeliz Multiple Repository Utils - example"/>
+## Demo
+##### Merge:
+<img src="https://raw.githubusercontent.com/emirdeliz/emirdeliz-multiple-repository-utils/master/docs/demo-merge.gif" width="700" height="auto" alt="Emirdeliz Multiple Repository Utils - example"/>
 
-<img src="https://raw.githubusercontent.com/emirdeliz/emirdeliz-multiple-repository-utils/master/docs/demo-pull.gif" width="300" height="auto" alt="Emirdeliz Multiple Repository Utils - example"/>
+##### Pull:
+<img src="https://raw.githubusercontent.com/emirdeliz/emirdeliz-multiple-repository-utils/master/docs/demo-pull.gif" width="700" height="auto" alt="Emirdeliz Multiple Repository Utils - example"/>
+
+## Settings
+
+##### About the settings _(vscode settings.json)_. All settings should be inside the key _emirdeliz-multiple-repository-utils_:
+
+| **Prop**  | **Type** | **Description** |
+|-----------|----------|---------------------------------------------------------------------|
+| **ignore-folders** | Array<string> | Define the folders to be ignored to the git. |
+
+##### Example settings
+  
+```json
+{
+  "emirdeliz-multiple-repository-utils": {
+    "ignore-folders": ["folder-1, folder-2, folder-3"]
+  }
+}  
+```
