@@ -8,6 +8,8 @@
 		"url": "https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/issues",
 		"email": "emirdeliz@gmail.com"
 	},
+	"license": "MIT",
+	"main": "./dist/extension.js",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/emirdeliz/emirdeliz-multiple-repository-utils.git"
@@ -36,8 +38,6 @@
 		"onCommand:emirdeliz-multiple-repository-utils.pull-workspace",
 		"onCommand:emirdeliz-multiple-repository-utils.merge-workspace"
 	],
-	"license": "MIT",
-	"main": "./dist/extension.js",
 	"contributes": {
 		"configuration": [
 			{
