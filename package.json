@@ -1,17 +1,37 @@
 {
 	"name": "emirdeliz-multiple-repository-utils",
-	"displayName": "emirdeliz-multiple-repository-utils",
-	"description": "Multiple repository utils",
+	"displayName": "Git utils to multi-repo approach",
+	"description": "emirdeliz-multiple-repository-utils - Makes your life easier to use the git if you work with a multi-repo approach",
 	"publisher": "emirdeliz",
+	"homepage": "https://github.com/emirdeliz/emirdeliz-multiple-repository-utils",
+	"bugs": {
+		"url": "https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/issues",
+		"email": "emirdeliz@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/emirdeliz/emirdeliz-multiple-repository-utils.git"
+	},
+	"categories": [
+		"Programming Languages",
+		"Other"
+	],
+	"keywords": [
+		"multi-repo",
+		"git-utils",
+		"git pull",
+		"git merge"
+	],
+	"icon": "assets/icon.png",
+	"galleryBanner": {
+		"color": "#C80000",
+		"theme": "dark"
+	},
 	"version": "0.0.1",
 	"type": "commonjs",
-	"repository": "https://github.com/emirdeliz/emirdeliz-multiple-repository-utils",
 	"engines": {
 		"vscode": "^1.71.0"
 	},
-	"categories": [
-		"Other"
-	],
 	"activationEvents": [
 		"onCommand:emirdeliz-multiple-repository-utils.pull-workspace",
 		"onCommand:emirdeliz-multiple-repository-utils.merge-workspace"
@@ -62,14 +82,16 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run build:dist",
+		"vscode:prepublish": "yarn run build:dist",
+		"vscode:package": "yarn run build:dist && vsce package --yarn",
+		"vscode:publish": "yarn vscode:package && vsce publish --yarn",
 		"build:dist": "swc ./src --quiet --out-dir dist",
 		"build:dist:watch": "swc ./src --watch --quiet --out-dir dist",
 		"build:test": "swc ./src/test --out-dir dist",
 		"test": "jest --clearCache && jest ./src/test/extension.test.ts",
 		"test:watch": "jest --watch ./src/test/extension.test.ts",
 		"symbol:link:modules:pre": "rm -rf node_modules/emirdeliz-vs-extension-utils",
-		"symbol:link:modules": "npm run symbol:link:modules:pre && ln -s ../../emirdeliz-vs-extension-utils node_modules/emirdeliz-vs-extension-utils",
+		"symbol:link:modules": "yarn run symbol:link:modules:pre && ln -s ../../emirdeliz-vs-extension-utils node_modules/emirdeliz-vs-extension-utils",
 		"lint:check": "eslint src --ext .ts --fix",
 		"clear:dependencies": "rm -rf node_modules && rm -rf yarn.lock",
 		"install:dev": "yarn clear:dependencies && yarn install && yarn symbol:link:modules"
