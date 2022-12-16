@@ -1,6 +1,6 @@
 import * as vscode from './__mocks__/vscode';
 import * as extension from '../extension';
-import { EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS } from 'emirdeliz-vs-extension-utils/src/constants';
+import { EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS } from 'emirdeliz-vs-extension-utils/dist/constants';
 
 function testRun(
 	runSpy: jest.SpyInstance,
