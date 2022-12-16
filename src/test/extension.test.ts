@@ -70,7 +70,7 @@ describe('Commands', function () {
 		await extension.makeMerge();
 
 		testRun(runSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge);
-		// testProgress(withProgressSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge);
+		testProgress(withProgressSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge);
 		testReport(reportSpy);
 	});
 
