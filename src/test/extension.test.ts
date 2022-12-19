@@ -1,4 +1,5 @@
 import * as vscode from './__mocks__/vscode';
+import * as utils from 'emirdeliz-vs-extension-utils';
 import * as extension from '../extension';
 import { EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS } from 'emirdeliz-vs-extension-utils/dist/constants';
 

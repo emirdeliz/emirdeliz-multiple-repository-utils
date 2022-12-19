@@ -1,4 +1,4 @@
-import * as constants from 'emirdeliz-vs-extension-utils/src/constants';
+import * as constants from 'emirdeliz-vs-extension-utils/dist/constants';
 import { Progress, ProgressOptions } from 'vscode';
 
 export const window = {
