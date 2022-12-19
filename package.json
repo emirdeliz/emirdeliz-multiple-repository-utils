@@ -10,6 +10,11 @@
 	},
 	"license": "MIT",
 	"main": "./dist/extension.js",
+	"version": "0.0.2",
+	"type": "commonjs",
+	"engines": {
+		"vscode": "^1.71.0"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/emirdeliz/emirdeliz-multiple-repository-utils.git"
@@ -26,13 +31,8 @@
 	],
 	"icon": "assets/icon.png",
 	"galleryBanner": {
-		"color": "#C80000",
+		"color": "#232323",
 		"theme": "dark"
-	},
-	"version": "0.0.1",
-	"type": "commonjs",
-	"engines": {
-		"vscode": "^1.71.0"
 	},
 	"activationEvents": [
 		"onCommand:emirdeliz-multiple-repository-utils.pull-workspace",
