@@ -6,13 +6,7 @@ import {
 } from './constants';
 
 async function makePull() {
-	const workspacePath = utils.getWorkspacePath();
-	if (!workspacePath?.uri || !workspacePath?.uri?.fsPath) {
-		return;
-	}
-
-	const foldersWithGitConfig = utils.getAllFoldersWithGitConfig(
-		workspacePath.uri.fsPath,
+	const foldersWithGitConfig = await utils.getAllFoldersWithGitConfig(
 		SETTINGS_KEY_BASE,
 		SETTINGS_KEY_GIT_IGNORE_FOLDERS
 	);
@@ -20,13 +14,7 @@ async function makePull() {
 }
 
 async function makeMerge() {
-	const workspacePath = utils.getWorkspacePath();
-	if (!workspacePath?.uri || !workspacePath?.uri?.fsPath) {
-		return;
-	}
-
-	const foldersWithGitConfig = utils.getAllFoldersWithGitConfig(
-		workspacePath.uri.fsPath,
+	const foldersWithGitConfig = await utils.getAllFoldersWithGitConfig(
 		SETTINGS_KEY_BASE,
 		SETTINGS_KEY_GIT_IGNORE_FOLDERS
 	);
