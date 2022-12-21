@@ -10,7 +10,7 @@
 	},
 	"license": "MIT",
 	"main": "./dist/extension.js",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"type": "commonjs",
 	"engines": {
 		"vscode": "^1.71.0"
@@ -89,7 +89,7 @@
 		"build:dist:watch": "swc ./src --watch --quiet --out-dir dist",
 		"build:test": "swc ./src/test --out-dir dist",
 		"test": "jest --clearCache && jest ./src/test/extension.test.ts",
-		"test:watch": "jest --watch ./src/test/extension.test.ts",
+		"test:watch": "jest --clearCache && jest --watch ./src/test/extension.test.ts",
 		"symbol:link:modules:pre": "rm -rf node_modules/emirdeliz-vs-extension-utils",
 		"symbol:link:modules": "yarn run symbol:link:modules:pre && ln -s ../../emirdeliz-vs-extension-utils node_modules/emirdeliz-vs-extension-utils",
 		"lint:check": "eslint src --ext .ts --fix",
