@@ -1,16 +1,23 @@
+import * as constants from 'emirdeliz-vs-extension-utils/dist/constants';
 import * as vscode from './__mocks__/vscode';
 import * as extension from '../extension';
-import { EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS } from 'emirdeliz-vs-extension-utils/dist/constants';
 
 jest.mock('fs');
 
 function testRun(
 	runSpy: jest.SpyInstance,
-	type: EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS
+	type: constants.EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS,
+	branchOrigin?: string
 ) {
 	expect(runSpy).toHaveBeenCalledTimes(2);
-	expect(runSpy).toHaveBeenNthCalledWith(1, `git -C repoOne ${type}`);
-	expect(runSpy).toHaveBeenNthCalledWith(2, `git -C repoTwo ${type}`);
+	expect(runSpy).toHaveBeenNthCalledWith(
+		1,
+		`git -C repoOne ${type}${branchOrigin ? ` origin/${branchOrigin}` : ''}`
+	);
+	expect(runSpy).toHaveBeenNthCalledWith(
+		2,
+		`git -C repoTwo ${type}${branchOrigin ? ` origin/${branchOrigin}` : ''}`
+	);
 }
 
 function testReport(reportSpy: jest.SpyInstance) {
@@ -28,7 +35,7 @@ function testReport(reportSpy: jest.SpyInstance) {
 
 function testProgress(
 	withProgressSpy: jest.SpyInstance,
-	type: EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS
+	type: constants.EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS
 ) {
 	expect(withProgressSpy).toHaveBeenCalledTimes(1);
 	expect(withProgressSpy).toHaveBeenCalledWith(
@@ -41,10 +48,13 @@ function testProgress(
 
 function testIgnoreFolders(
 	runSpy: jest.SpyInstance,
-	type: EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS
+	type: constants.EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS,
+	branchOrigin?: string
 ) {
 	expect(runSpy).toHaveBeenCalledTimes(1);
-	expect(runSpy).toHaveBeenCalledWith(`git -C repoTwo ${type}`);
+	expect(runSpy).toHaveBeenCalledWith(
+		`git -C repoTwo ${type}${branchOrigin ? ` origin/${branchOrigin}` : ''}`
+	);
 }
 
 describe('Commands', function () {
@@ -59,8 +69,11 @@ describe('Commands', function () {
 
 		await extension.makePull();
 
-		testRun(runSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Pull);
-		testProgress(withProgressSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Pull);
+		testRun(runSpy, constants.EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Pull);
+		testProgress(
+			withProgressSpy,
+			constants.EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Pull
+		);
 		testReport(reportSpy);
 	});
 
@@ -71,24 +84,48 @@ describe('Commands', function () {
 
 		await extension.makeMerge();
 
-		testRun(runSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge);
-		testProgress(withProgressSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge);
+		const branchOrigin = 'feature/login';
+		testRun(
+			runSpy,
+			constants.EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge,
+			branchOrigin
+		);
+		testProgress(
+			withProgressSpy,
+			constants.EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge
+		);
 		testReport(reportSpy);
 	});
 
 	it('should return expected output when execute pull/merge with ignoreFolders', async function () {
 		const runSpy = jest.spyOn(vscode.window, 'sendText');
 		jest.spyOn(vscode.workspace, 'getConfiguration').mockReturnValue({
-			get: function () {
-				return ['repoOne'];
+			get: function (settingKey: string) {
+				switch (settingKey) {
+					case 'branch-origin':
+						return 'feature/login';
+					case 'ignore-folders':
+						return ['repoOne'];
+					default:
+						return [];
+				}
 			},
 		});
 
 		await extension.makePull();
-		testIgnoreFolders(runSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Pull);
+		testIgnoreFolders(
+			runSpy,
+			constants.EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Pull
+		);
 
 		runSpy.mockReset();
 		await extension.makeMerge();
-		testIgnoreFolders(runSpy, EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge);
+
+		const branchOrigin = 'feature/login';
+		testIgnoreFolders(
+			runSpy,
+			constants.EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS.Merge,
+			branchOrigin
+		);
 	});
 });
