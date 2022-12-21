@@ -51,10 +51,10 @@ export const workspace = {
 		return {
 			get: function (settingKey: string) {
 				switch (settingKey) {
-					case settingKey:
-						return ['src/other-dir/code'];
-					case 'ignoreFolders':
-						return [];
+					case 'branch-origin':
+						return 'feature/login';
+					case 'ignore-folders':
+						return [] as Array<string>;
 					default:
 						return [];
 				}
