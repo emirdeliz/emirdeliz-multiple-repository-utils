@@ -102,9 +102,9 @@ describe('Commands', function () {
 		jest.spyOn(vscode.workspace, 'getConfiguration').mockReturnValue({
 			get: function (settingKey: string) {
 				switch (settingKey) {
-					case 'branch-origin':
+					case 'emirdeliz-multiple-repository-utils.branch-origin':
 						return 'feature/login';
-					case 'ignore-folders':
+					case 'emirdeliz-multiple-repository-utils.ignore-folders':
 						return ['repoOne'];
 					default:
 						return [];
