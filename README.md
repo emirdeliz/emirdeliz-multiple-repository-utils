@@ -23,13 +23,15 @@ This extension makes your life easier to use the git if you work with a multi-re
 | **Prop**           | **Type**      | **Description**                              |
 | ------------------ | ------------- | -------------------------------------------- |
 | **ignore-folders** | Array<string> | Define the folders to be ignored to the git. |
+| **branch-origin**  | Array<string> | Define the branch to be merged to the git.   |
 
 ##### Example settings
 
 ```json
 {
-  "emirdeliz-multiple-repository-utils": { 
-   "ignore-folders": ["folder-1, folder-2, folder-3"]
-  }
+	"emirdeliz-multiple-repository-utils": {
+		"ignore-folders": ["folder-1, folder-2, folder-3"],
+		"branch-origin": "master"
+	}
 }
 ```
