@@ -1,7 +1,8 @@
 import * as vscode from './__mocks__/vscode';
-import * as utils from 'emirdeliz-vs-extension-utils';
 import * as extension from '../extension';
 import { EMIRDELIZ_EXTENSION_UTILS_GIT_COMMANDS } from 'emirdeliz-vs-extension-utils/dist/constants';
+
+jest.mock('fs');
 
 function testRun(
 	runSpy: jest.SpyInstance,
@@ -78,9 +79,9 @@ describe('Commands', function () {
 	it('should return expected output when execute pull/merge with ignoreFolders', async function () {
 		const runSpy = jest.spyOn(vscode.window, 'sendText');
 		jest.spyOn(vscode.workspace, 'getConfiguration').mockReturnValue({
-			get: jest.fn(function () {
+			get: function () {
 				return ['repoOne'];
-			}),
+			},
 		});
 
 		await extension.makePull();

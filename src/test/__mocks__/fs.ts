@@ -1,19 +1,18 @@
-const fs = function () {
+export function existsSync(filePath: string) {
+	return (
+		(filePath.includes('repoOne') || filePath.includes('repoTwo')) &&
+		!filePath.includes('core')
+	);
+}
+
+export function readdirSync() {
+	return ['data', 'extension', 'repoOne', 'repoTwo', 'swc'];
+}
+
+export function statSync() {
 	return {
-		existsSync: function () {
+		isDirectory: function () {
 			return true;
 		},
-		readdirSync: function () {
-			return ['eml-design-system', 'eml-core', 'eml-utils'];
-		},
-		statSync: function () {
-			return {
-				isDirectory: function () {
-					return true;
-				},
-			};
-		},
 	};
-};
-
-export default fs;
+}
