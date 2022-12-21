@@ -10,7 +10,7 @@
 	},
 	"license": "MIT",
 	"main": "./dist/extension.js",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"type": "commonjs",
 	"engines": {
 		"vscode": "^1.71.0"
@@ -44,12 +44,19 @@
 				"id": "emirdeliz-multiple-repository-utils",
 				"title": "Multi repo configuration",
 				"properties": {
-					"ignoreFolders": {
+					"ignore-folders": {
 						"type": "array",
 						"default": [],
 						"markdownDescription": "Specifies folders to ignore when extension makes some action",
 						"scope": "window",
 						"order": 10
+					},
+					"branch-origin": {
+						"type": "string",
+						"default": "",
+						"markdownDescription": "Specifies the branch to make merge",
+						"scope": "window",
+						"order": 20
 					}
 				}
 			}
