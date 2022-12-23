@@ -1,37 +1,34 @@
-# emirdeliz-multiple-repository-utils
+# upload-largest-files
 
-[![Build](https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/actions/workflows/build.yml/badge.svg)](https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/actions/workflows/build.yml)
-[![Lint](https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/actions/workflows/lint.yml/badge.svg)](https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/actions/workflows/lint.yml)
-[![Test](https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/actions/workflows/test.yml/badge.svg)](https://github.com/emirdeliz/emirdeliz-multiple-repository-utils/actions/workflows/test.yml)
+[![Build](https://github.com/emirdeliz/upload-largest-files/actions/workflows/build.yml/badge.svg)](https://github.com/emirdeliz/upload-largest-files/actions/workflows/build.yml)
+[![Lint](https://github.com/emirdeliz/upload-largest-files/actions/workflows/lint.yml/badge.svg)](https://github.com/emirdeliz/upload-largest-files/actions/workflows/lint.yml)
+[![Test](https://github.com/emirdeliz/upload-largest-files/actions/workflows/test.yml/badge.svg)](https://github.com/emirdeliz/upload-largest-files/actions/workflows/test.yml)
 
-This extension makes your life easier to use the git if you work with a multi-repo approach. You can run pull and merge to all projects inside the workspace with a simple action on the menu.
+This is a simple lib to upload large files.
 
 ## Demo
 
-##### Merge:
+https://raw.githubusercontent.com/emirdeliz/upload-largest-files/master/assets/demo-merge.gif
 
-<img src="https://raw.githubusercontent.com/emirdeliz/emirdeliz-multiple-repository-utils/master/assets/demo-merge.gif" width="700" height="auto" alt="Emirdeliz Multiple Repository Utils - example"/>
+<img src="https://raw.githubusercontent.com/emirdeliz/upload-largest-files/master/docs/demo.gif" width="700" height="auto" alt="Upload Largest Files - example"/>
 
-##### Pull:
+## How use?
 
-<img src="https://raw.githubusercontent.com/emirdeliz/emirdeliz-multiple-repository-utils/master/assets/demo-pull.gif" width="700" height="auto" alt="Emirdeliz Multiple Repository Utils - example"/>
-
-## Settings
-
-##### About the settings _(vscode settings.json)_. All settings should be inside the key _emirdeliz-multiple-repository-utils_:
-
-| **Prop**           | **Type**      | **Description**                              |
-| ------------------ | ------------- | -------------------------------------------- |
-| **ignore-folders** | Array<string> | Define the folders to be ignored to the git. |
-| **branch-origin**  | Array<string> | Define the branch to be merged to the git.   |
-
-##### Example settings
-
-```json
-{
-	"emirdeliz-multiple-repository-utils": {
-		"ignore-folders": ["folder-1, folder-2, folder-3"],
-		"branch-origin": "master"
-	}
-}
+```javascript
+const file = <file to upload>
+const url = <endpoint>;
+const onProgress = <progress callback>
+const result = await window.uploadLargestFiles.uploadFile({
+	file,
+	url,
+	onProgress,
+});
 ```
+
+##### About the parameters:
+
+| **Parameter**  | **Type** | **Description**                             |
+| -------------- | -------- | ------------------------------------------- |
+| **file**       | File     | The file to upload.                         |
+| **url**        | string   | The server url to make upload.              |
+| **onProgress** | string   | The callback to follow the upload progress. |
