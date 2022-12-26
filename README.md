@@ -8,13 +8,7 @@ This extension makes your life easier to use the git if you work with a multi-re
 
 ## Demo
 
-##### Merge:
-
-<img src="https://raw.githubusercontent.com/emirdeliz/emirdeliz-multiple-repository-utils/master/assets/demo-merge.gif" width="700" height="auto" alt="Emirdeliz Multiple Repository Utils - example"/>
-
-##### Pull:
-
-<img src="https://raw.githubusercontent.com/emirdeliz/emirdeliz-multiple-repository-utils/master/assets/demo-pull.gif" width="700" height="auto" alt="Emirdeliz Multiple Repository Utils - example"/>
+<img src="https://raw.githubusercontent.com/emirdeliz/emirdeliz-multiple-repository-utils/master/assets/demo.gif" width="700" height="auto" alt="Emirdeliz Multiple Repository Utils - example"/>
 
 ## Settings
 
@@ -29,9 +23,9 @@ This extension makes your life easier to use the git if you work with a multi-re
 
 ```json
 {
-  "emirdeliz-multiple-repository-utils": {
-    "ignore-folders": ["folder-1, folder-2, folder-3"],
-    "branch-origin": "master"
-  }
+	"emirdeliz-multiple-repository-utils": {
+		"ignore-folders": ["folder-1, folder-2, folder-3"],
+		"branch-origin": "master"
+	}
 }
 ```
