@@ -23,9 +23,9 @@ This extension makes your life easier to use the git if you work with a multi-re
 
 ```json
 {
-	"emirdeliz-multiple-repository-utils": {
-		"ignore-folders": ["folder-1, folder-2, folder-3"],
-		"branch-origin": "master"
-	}
+  "emirdeliz-multiple-repository-utils": {
+    "ignore-folders": ["folder-1, folder-2, folder-3"],
+    "branch-origin": "master"
+  }
 }
 ```
