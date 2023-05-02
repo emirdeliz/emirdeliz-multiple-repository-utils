@@ -8,7 +8,7 @@ This extension makes your life easier to use the git if you work with a multi-re
 
 ## Demo
 
-<img src="https://raw.githubusercontent.com/emirdeliz/emirdeliz-multiple-repository-utils/master/assets/demo.gif" width="700" height="auto" alt="Emirdeliz Multiple Repository Utils - example"/>
+<img src="https://raw.githubusercontent.com/emirdeliz/emirdeliz-multiple-repository-utils/main/assets/demo.gif" width="700" height="auto" alt="Emirdeliz Multiple Repository Utils - example"/>
 
 ## Settings
 
